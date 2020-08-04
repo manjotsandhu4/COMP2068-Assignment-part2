@@ -1,0 +1,65 @@
+<!--
+  Step 1: The form must be sharable between the new and edit views.
+-->
+<form action="<%= (typeof actionPath === 'undefined') ? '/visits' : actionPath %>", method="post">
+  <% if (typeof actionPath !== 'undefined') { %>
+    <input type="hidden" name="id" value="<%= formData.id %>">
+  <% } %>
+
+  <div class="form-group">
+    <label for="visitNumber">Visit Number</label>
+    <input type="text" name="visitNumber" class="form-control" value="<%= formData.visitNumber %>">
+  </div>
+
+  <div class="form-group">
+    <label for="location">Visit location</label>
+    <select name="location">
+      <% var locations=['Brampton', 'Peel', 'Vaughn', 'Bolton'] %>
+      <% for (let location of locations) { %>
+        <option <%= (location === formData.location) && 'selected' %> value="<%= location %>"><%= location %></option>
+      <% } %>
+      <!--<option value="Brampton" selected="selected">Brampton</option>
+      <option value="Peel">Peel</option>
+      <option value="Vaughn">Vaughn</option>
+      <option value="Bolton">Bolton</option>!-->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="visitType">Visit Type</label>
+    <select name="visitType">
+      <% var visitTypes=['Parking Ticket', 'Bail Hearing', 'Crown Summon', 'Pardon Request'] %>
+      <% for (let visitType of visitTypes) { %>
+        <option <%= (visitType === formData.visitType) && 'selected' %> value="<%= visitType %>"><%= visitType %></option>
+      <% } %>
+      <!--<option value="Parking Ticket" selected="selected">Parking Ticket</option>
+      <option value="Bail Hearing">Bail Hearing</option>
+      <option value="Crown Summon">Crown Summon</option>
+      <option value="Pardon Reques">Pardon Request</option>!-->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="visitDate"></label>
+    <input type="date" name="visitDate" value="<%= formData.visitDate %>" min="2020-07-10" >
+
+  </div>
+  <div class="form-group">
+    <label for="visitTime">Visit Time</label>
+    <select name="visitTime">
+      <% var times=['7:00 am', '9:00 am', '11:00 am', '1:00 pm', '3:00 pm'] %>
+      <% for (let visitTime of times) { %>
+        <option <%= (visitTime === formData.visitTime) && 'selected' %> value="<%= visitTime %>"><%= visitTime %></option>
+      <% } %>
+      <!--<option value="7:00 am" selected="selected">7:00 am</option>
+      <option value="9:00 am">9:00 am</option>
+      <option value="11:00 am">11:00 am</option>
+      <option value="1:00 pm">1:00 pm</option>
+      <option value="3:00 pm">3:00 pm</option>!-->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-dark">Submit</button>
+  </div>
+</form>

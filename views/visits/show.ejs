@@ -1,0 +1,33 @@
+<!--
+  Step 1: This is your descretion how you would like to display data,
+  but you must list display only one document based on the passed ID.
+-->
+<%- include ('../partials/header') %>
+
+<div class="container my-5">
+  <header>
+    <h1><%= visit.visitNumber</h1>
+  </header>
+  <div class="content"
+    <div class = "info-visit">
+      <div class = "info">
+        <small>location: <%= visit.location %></small>
+      </div>
+      <div class = "success">
+        <small>Visit Type: <%= visit.visitType %></small>
+      </div>
+      <div class = "info">
+        <small>Visit Date: <%= visit.vistDate.toLocaleString("en-CA") %></small>
+      </div>
+      <div class = "success">
+        <small>Visit Time: <%= visit.visitTime %></small>
+      </div>
+      <div class = "info">
+        <small>Visit created on: <%= visit.updatedAt.toLocaleString("en-CA") %></small>
+      </div>
+    </div>
+</div>
+</div>
+
+
+<%- include ('../partials/footer') %>

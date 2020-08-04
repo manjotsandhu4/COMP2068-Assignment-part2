@@ -1,0 +1,47 @@
+<!--
+  Step 1: This is your descretion how you would like to display data,
+  but you must list all the documents in your resource collection.
+-->
+<%- include ('../partials/header') %>
+<div class="container my-5">
+  <header>
+    <h1>Visits</h1>
+  </header>
+  <hr>
+  <div class="content">
+    <% for (let visit of visits) { %>
+      <div class="card my-5">
+        <div class="card-header">
+          <h5 class="card-title"><%= visit.visitNumber%></h5>
+          <% if (typeof visit.user !== 'undefined') {%>
+            <small>Visit for: <%= visit.user.fullname %></small>
+          <% }%>
+          
+        </div>
+
+        <div class="card-body">
+          <p class="card-text">
+            Your visit is on <strong><%= visit.visitDate.toLocaleDateString("en-CA") %></strong> at <strong><%= visit.visitTime %></strong>.
+          </p>
+          <p>
+            Your visit is scheduled at <%= visit.location%> location. %>
+          </p>
+        </div>
+        <% if(authorized && (typeof visit.user ==='undefined' || visit.user.email === email)) { %>
+          <div class="card-footer text-muted">
+            <a href="/visits/<%= visit.id %>/edit"><i class="fa fa-edit">&nbsp;</i>Change your visit</a>
+            <br>
+            <form class="form-inline" action="/visits/delete" method="post" onsubmit="return confirm('Are you sure you want to cancel your visit?');">
+              <input type="hidden" value="<%= visit.id %>" name="id">
+              <button class="delete" type="submit">
+                <i class="fa fa-trash">&nbsp;</i>
+                Cancel your visit
+              </button>
+            </form>
+          </div>      
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</div>
+<%- include ('../partials/footer') %>
